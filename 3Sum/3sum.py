@@ -1,50 +1,37 @@
 class Solution:
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
-
-        solutions = []
-        hashmap = {}
-
-        for i, num in enumerate(nums) :
-            difference = target - num
-
-            if difference in hashmap :
-                solutions.append([difference, num])
-            
-            hashmap[num] = i
-
-        return solutions
-
-
     def threeSum(self, nums: list[int]) -> list[list[int]]:
 
-        solutions = []
+        # use set for the solutions to avoid duplicates
+        solutions = set()
         nums.sort()
         
-        # do the two-sum problem, but as first number take any single one from the list
-        for i, firstNum in enumerate(nums) :
-
-            if i > 0 and nums[i] == nums[i-1] :
+        for i in range(len(nums)):
+            
+            # skip doing two times the same
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
+            
+            # target is what the remaining two numbers should add up to
+            target = -nums[i]
+            hashmap = {}
+            
+            # go through all the numbers after the first one and solve the two-sum problem
+            for j in range(i + 1, len(nums)):
+                difference = target - nums[j]
 
-            target = -firstNum
-            twoSum_nums = nums[i+1:]
+                if difference in hashmap:
+                    triplet = tuple(sorted([nums[i], nums[j], difference]))
+                    solutions.add(triplet)
 
-            twoSum_answer = self.twoSum(twoSum_nums, target)
-            if twoSum_answer != [] :
-                for pair in twoSum_answer:
-                    triplet = [firstNum] + pair
-                    if triplet not in solutions:
-                        solutions.append(triplet) 
+                hashmap[nums[j]] = True
 
-        return solutions
+        # return all the triplets that are solutions in a list
+        return [list(triplet) for triplet in solutions]
 
-
-    
 
         
 
 print(Solution().threeSum([-1,0,1,2,-1,-4]), "\n")
 print(Solution().threeSum([0,1,1]), "\n")
-print(Solution().threeSum([0,0,0]))
+print(Solution().threeSum([0,0,0]), "\n")
 print(Solution().threeSum([0,0,0,0]))
-
