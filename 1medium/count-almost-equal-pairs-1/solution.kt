@@ -8,8 +8,8 @@ class Solution {
         if (a == b) return true
 
         // both numbers are almost equal
-        val aDigits = a.toString().toList()
-        val bDigits = b.toString().toList()
+        val aDigits = a.toString().toMutableList()
+        val bDigits = b.toString().toMutableList()
 
         //check if both numbers have equal number of digits
         if (aDigits.size == bDigits.size) {
@@ -20,7 +20,7 @@ class Solution {
             // if exactly two digits differ, check if switching them will make them equal
             return differentIndices.size == 2 && aDigits[differentIndices[0]] == bDigits[differentIndices[1]] && aDigits[differentIndices[1]] == bDigits[differentIndices[0]]
         
-        } else if (Math.abs(aDigits.size - bDigits.size) == 1) {
+        } else {
             
             // check which number is longer
             val longer = if (aDigits.size > bDigits.size) aDigits else bDigits
@@ -30,8 +30,19 @@ class Solution {
             val zeroIndices = longer.indices.filter { longer[it] == '0' }
             if (zeroIndices.isNotEmpty()) {
                 for (index in zeroIndices) {
-                    val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
-                    return newLonger == shorter
+
+                    // create a copy of list to avoid modifying the original list
+                    var newLonger = longer.map { it } as MutableList<Char>
+
+                    // swap the zero with the first digit
+                    newLonger[index] = newLonger[0]
+                    newLonger[0] = '0'
+
+                    val result = newLonger.dropWhile { it == '0' }
+
+                    if (result == shorter) {
+                        return true
+                    }
                 }
             }
         }
@@ -65,6 +76,10 @@ fun main() {
     // val nums2 = intArrayOf(5,12,8,5,5,1,20,3,10,10,5,5,5,5,1)
     // val result2 = solution.countPairs(nums2)
     // require(result2 == 27) {"Expected 27, but got $result2"}
+
+    // val num4 = intArrayOf(30003, 33)
+    // val result4 = solution.countPairs(num4)
+    // print(result4)
 
     val nums3 = intArrayOf(886595,767627,6691,593887,857750,919155,830918,593887,593788,593788,660078,598873,310196,668007,597883,983587,897853,668700,435383,953887,631608,897853,953887,240754,593887,597883,455127,627877,643862,660087,893587,129173,228736,627877,775850,875750,50701,830255,751,729113,684778,114586,154186,593887,668700,238726)
     val result3 = solution.countPairs(nums3)
