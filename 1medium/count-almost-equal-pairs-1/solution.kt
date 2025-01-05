@@ -29,7 +29,7 @@ class Solution {
             val zeroIndices = longer.indices.filter { longer[it] == '0' }
             if (zeroIndices.isNotEmpty()) {
                 for (index in zeroIndices) {
-                    val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
+                    val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1)
                     if (newLonger == shorter) println("Longer: $longer, Shorter: $shorter, Zero Indices: $zeroIndices")
                     return newLonger == shorter
                 }
