@@ -18,5 +18,5 @@ fun main() {
     val target1 = 9
     val solution1 = Solution()
     val result1 = solution1.twoSum(nums1, target1)
-    println(result1) // 0, 1
+    println(result1.contentToString()) // 0, 1
 }

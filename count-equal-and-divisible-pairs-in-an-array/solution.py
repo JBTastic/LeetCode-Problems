@@ -1,3 +1,6 @@
+## Used Kotlin instead
+
+
 class Solution:
     def countPairs(self, nums: list[int], k: int) -> int:
         pass
