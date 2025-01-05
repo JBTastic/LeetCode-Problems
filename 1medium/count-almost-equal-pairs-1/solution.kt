@@ -19,13 +19,17 @@ class Solution {
         
         } else if (Math.abs(aDigits.size - bDigits.size) == 1) {
             
-            // if the numbers differ by one digit, check if the longer number has a 0, if so switch the 0 with the first digit and check if the numbers are equal
+            // check which number is longer
             val longer = if (aDigits.size > bDigits.size) aDigits else bDigits
             val shorter = if (aDigits.size < bDigits.size) aDigits else bDigits
-            if (longer.contains('0')) {
-                val index = longer.indexOf('0')
-                val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
-                return newLonger == shorter
+
+            // now check if the longer number has a 0 and where the zeros are, then for each zero swap it with the first digit and check if the numbers are equal
+            val zeroIndices = longer.indices.filter { longer[it] == '0' }
+            if (zeroIndices.isNotEmpty()) {
+                for (index in zeroIndices) {
+                    val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
+                    return newLonger == shorter
+                }
             }
             return false
 
@@ -41,7 +45,8 @@ class Solution {
             for (j in i + 1 until nums.size) {
                 if (compare(nums[i], nums[j])) {
                     counter++
-                }
+                    println("Pair found: $i and $j")
+                } else println("Pair not found: $i and $j")
             }
         }
         return counter
@@ -58,6 +63,10 @@ fun main() {
     val nums2 = intArrayOf(5,12,8,5,5,1,20,3,10,10,5,5,5,5,1)
     val result2 = solution.countPairs(nums2)
     require(result2 == 27) {"Expected 27, but got $result2"}
+
+    val nums3 = intArrayOf(886595,767627,6691,593887,857750,919155,830918,593887,593788,593788,660078,598873,310196,668007,597883,983587,897853,668700,435383,953887,631608,897853,953887,240754,593887,597883,455127,627877,643862,660087,893587,129173,228736,627877,775850,875750,50701,830255,751,729113,684778,114586,154186,593887,668700,238726)
+    val result3 = solution.countPairs(nums3)
+    require(result3 == 59) {"Expected 59, but got $result3"}
 
     println("Passed")
 }
