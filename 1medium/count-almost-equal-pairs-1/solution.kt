@@ -9,11 +9,15 @@ class Solution {
         val aDigits = a.toString().toList()
         val bDigits = b.toString().toList()
 
+        println("aDigits: $aDigits, bDigits: $bDigits")
+
         //check if both numbers have equal number of digits
-        if (aDigits.size != bDigits.size) return false
+        if (Math.abs(aDigits.size - bDigits.size) > 1) return false
 
         //check in which position the numbers differ
         val differentIndices = aDigits.indices.filter { aDigits[it] != bDigits[it] }
+
+        println("Different indices: $differentIndices")
 
         // if exactly two digits differ, check if switching them will make them equal
         return differentIndices.size == 2 && aDigits[differentIndices[0]] == bDigits[differentIndices[1]] && aDigits[differentIndices[1]] == bDigits[differentIndices[0]]
@@ -25,8 +29,9 @@ class Solution {
         for (i in 0 until nums.size - 1) {
             for (j in i + 1 until nums.size) {
                 if (compare(nums[i], nums[j])) {
+                    println("True")
                     counter++
-                }
+                } else {println("False")}
             }
         }
         return counter
