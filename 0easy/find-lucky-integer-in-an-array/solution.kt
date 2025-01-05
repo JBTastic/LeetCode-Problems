@@ -1,9 +1,18 @@
 class Solution {
     fun findLucky(arr: IntArray): Int {
+        var maxKey = -1
         val map: HashMap<Int, Int> = HashMap()
-        for ((index: Int, value: Int) in arr.withIndex()) {
-            map.computeIfAbsent(value) {Int}.add(index)
+        for (value: Int in arr) {
+            map[value] = map.getOrDefault(value, 0) + 1
         }
+
+        for ((key: Int, count: Int) in map) {
+            if (key == count) {
+                maxKey = Math.max(maxKey, key)
+            }
+        }
+        
+        return maxKey
     }
 }
 
@@ -15,5 +24,5 @@ fun main() {
     val solution = Solution()
     val result = solution.findLucky(nums)
     require(result == 2) {"Expected 2, but got $result"}
-    println(result)
+    println("Passed")
 }
