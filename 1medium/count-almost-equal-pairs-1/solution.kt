@@ -1,11 +1,8 @@
 // https://leetcode.com/problems/count-almost-equal-pairs-i/description/
 
-import java.io.File
-
 class Solution {
-    fun compare(a: Int, b: Int): Boolean {
 
-        println("Comparing $a and $b")
+    fun compare(a: Int, b: Int): Boolean {
 
         // both numbers are already equal
         if (a == b) return true
@@ -34,7 +31,6 @@ class Solution {
             if (zeroIndices.isNotEmpty()) {
                 for (index in zeroIndices) {
                     val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
-                    if (newLonger == shorter) println("Longer: $longer, Shorter: $shorter, Zero Indices: $zeroIndices")
                     return newLonger == shorter
                 }
             }
@@ -44,14 +40,15 @@ class Solution {
 
 
     fun countPairs(nums: IntArray): Int {
-        println()
         var counter = 0
         for (i in 0 until nums.size - 1) {
             for (j in i + 1 until nums.size) {
                 if (compare(nums[i], nums[j])) {
                     counter++
-                    println("True")
-                } else println("False")
+                } else {
+                    var a = nums[i]
+                    var b = nums[j]
+                }
             }
         }
         return counter
@@ -71,10 +68,7 @@ fun main() {
 
     val nums3 = intArrayOf(886595,767627,6691,593887,857750,919155,830918,593887,593788,593788,660078,598873,310196,668007,597883,983587,897853,668700,435383,953887,631608,897853,953887,240754,593887,597883,455127,627877,643862,660087,893587,129173,228736,627877,775850,875750,50701,830255,751,729113,684778,114586,154186,593887,668700,238726)
     val result3 = solution.countPairs(nums3)
-    // require(result3 == 59) {"Expected 59, but got $result3"}
+    require(result3 == 59) {"Expected 59, but got $result3"}
 
-    val file = File("output.txt")
-    file.writeText(result3.toString())
-
-    println("Done")
+    println("Passed")
 }
