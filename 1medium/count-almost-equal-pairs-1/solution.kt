@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/count-almost-equal-pairs-i/description/
+
 class Solution {
     fun compare(a: Int, b: Int): Boolean {
 
