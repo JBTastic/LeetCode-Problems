@@ -1,6 +1,5 @@
 class Solution {
     fun compare(a: Int, b: Int): Boolean {
-        println("Comparing $a and $b")
 
         // both numbers are already equal
         if (a == b) return true
@@ -20,12 +19,18 @@ class Solution {
         
         } else if (Math.abs(aDigits.size - bDigits.size) == 1) {
             
-            // if the numbers differ by one digit, check if the longer number is a substring of the shorter number
+            // if the numbers differ by one digit, check if the longer number has a 0, if so switch the 0 with the first digit and check if the numbers are equal
             val longer = if (aDigits.size > bDigits.size) aDigits else bDigits
             val shorter = if (aDigits.size < bDigits.size) aDigits else bDigits
-            return longer.joinToString("").contains(shorter.joinToString(""))
+            if (longer.contains('0')) {
+                val index = longer.indexOf('0')
+                val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
+                return newLonger == shorter
+            }
+            return false
 
-        } else return false
+        }
+        return false
     }
 
 
@@ -35,9 +40,8 @@ class Solution {
         for (i in 0 until nums.size - 1) {
             for (j in i + 1 until nums.size) {
                 if (compare(nums[i], nums[j])) {
-                    println("True")
                     counter++
-                } else {println("False")}
+                }
             }
         }
         return counter
