@@ -34,8 +34,6 @@ class Solution {
                     return newLonger == shorter
                 }
             }
-            return false
-
         }
         return false
     }
