@@ -1,6 +1,8 @@
 class Solution {
     fun compare(a: Int, b: Int): Boolean {
 
+        println("Comparing $a and $b")
+
         // both numbers are already equal
         if (a == b) return true
 
@@ -28,6 +30,7 @@ class Solution {
             if (zeroIndices.isNotEmpty()) {
                 for (index in zeroIndices) {
                     val newLonger = longer.subList(1,index) + longer[0] + longer.subList(index + 1, longer.size)
+                    if (newLonger == shorter) println("Longer: $longer, Shorter: $shorter, Zero Indices: $zeroIndices")
                     return newLonger == shorter
                 }
             }
@@ -45,8 +48,8 @@ class Solution {
             for (j in i + 1 until nums.size) {
                 if (compare(nums[i], nums[j])) {
                     counter++
-                    println("Pair found: $i and $j")
-                } else println("Pair not found: $i and $j")
+                    println("True")
+                } else println("False")
             }
         }
         return counter
