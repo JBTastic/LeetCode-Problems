@@ -1,30 +1,25 @@
 class MyCalendarTwo() {
 
     // create a mutable list of bookings
-    var bookings: MutableList<Pair<Int, Int>> = mutableListOf()
+    var bookings: MutableList<Triple<Int, Int, Int>> = mutableListOf()
+    var counter: Int = 0
 
     fun book(startTime: Int, endTime: Int): Boolean {
 
-        var counter: Int = 0
-
         // check for every new booking if it overlaps with an existing booking
-        for ((start2, end2) in bookings) {
-            if (startTime < end2 && endTime > start2 && counter > 0) {
-                println("Counter: $counter")
+        for ((start2, end2, doubleBooking) in bookings) {
+            if (startTime < end2 && endTime > start2 && doubleBooking > 0) {
                 return false
 
-            } else if (startTime < end2 && endTime > start2 && counter == 0) {
-                bookings.add(Pair(startTime, endTime))
-                bookings.add(Pair(start2, endTime))
-                counter++
-                println("Counter: $counter")
+            } else if (startTime < end2 && endTime > start2 && doubleBooking == 0) {
+                bookings.add(Triple(startTime, endTime, 0))
+                bookings.add(Triple(start2, endTime, 2))
                 return true
             }
         }
         
         // if not, add the new booking to the list and return true
-        bookings.add(Pair(startTime, endTime))
-        println("Counter: $counter")
+        bookings.add(Triple(startTime, endTime, 0))
         return true
     }
 }
@@ -51,7 +46,7 @@ fun main () {
     
     for (i in testCase.indices) {
         val result = obj.book(testCase[i][0], testCase[i][1])
-        require(result == expected[i]) { "Expected ${expected[i]}, but got $result for test case ${testCase[i]}, also bookings was ${obj.bookings}" }
+        require(result == expected[i]) { "Expected ${expected[i]}, but got $result for test case ${testCase[i]}, also bookings is ${obj.bookings}" }
         println("Test ${testCase[i]} passed")
     }
 }
