@@ -6,19 +6,25 @@ class MyCalendarTwo() {
 
     fun book(startTime: Int, endTime: Int): Boolean {
 
-        // check for every new booking if it overlaps with an existing booking
+        // go through every existing booking
         for ((start2, end2, doubleBooking) in bookings) {
+
+            // check for every new booking if it overlaps with a double booking
             if (startTime < end2 && endTime > start2 && doubleBooking > 0) {
                 return false
+            }
+        }
 
-            } else if (startTime < end2 && endTime > start2 && doubleBooking == 0) {
+        // if it doesn't, check if it overlaps with a single booking
+        for ((start2, end2, doubleBooking) in bookings) {
+            if (startTime < end2 && endTime > start2) {
                 bookings.add(Triple(startTime, endTime, 0))
                 bookings.add(Triple(start2, endTime, 2))
                 return true
             }
         }
-        
-        // if not, add the new booking to the list and return true
+
+        // if it isn't overlapping at all, add the new booking to the list and return true
         bookings.add(Triple(startTime, endTime, 0))
         return true
     }
@@ -39,9 +45,7 @@ fun main () {
     )
 
     val expected: List<Boolean> = listOf(
-        true,true,true,true,true,true,true,true,false,false,false,false,
-        false,true,false,false,false,true,false,false,false,false,false,
-        false,false,true,false,false,false
+        true,true,true,true,true,true,true,true,false,false,false,false,false,true,false,false,false,true,false,false,false,false,false,false,false,false,true,false,false,false
     )
     
     for (i in testCase.indices) {
