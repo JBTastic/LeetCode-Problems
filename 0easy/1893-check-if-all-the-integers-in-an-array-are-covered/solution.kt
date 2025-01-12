@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/submissions/1506363117/
+
 class Solution {
     fun isCovered(ranges: Array<IntArray>, left: Int, right: Int): Boolean {
         var leftToRight= mutableListOf<Int>()
