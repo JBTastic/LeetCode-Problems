@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/description/?envType=daily-question&envId=2025-01-12
+
 class Solution {
     fun canBeValid(s: String, locked: String): Boolean {
         // if number of parentheses is uneven, return false
