@@ -22,7 +22,7 @@ class Solution {
     }
 }
 
-fun main() {
+fun main(){
     val obj = Solution()
     val original = intArrayOf(1,2,3,4)
     val m = 2
