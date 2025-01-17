@@ -5,10 +5,16 @@ class Solution {
         // xor all elements from derived
         // if the result is 0, return true
         // else return false
-        if ((derived.reduce { acc, i -> acc xor i }) == 0) {
-            return true
+        return (derived.reduce { acc, i -> acc xor i }) == 0
+    }
+
+    // faster solution
+    fun fasterDoesValidArrayExist(derived: IntArray): Boolean {
+        var x = 0
+        for (i in derived) {
+            x = x xor i
         }
-        return false
+        return x == 0
     }
 }
 
