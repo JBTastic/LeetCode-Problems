@@ -2,19 +2,22 @@
 
 class Solution {
     fun doesValidArrayExist(derived: IntArray): Boolean {
+        
         // xor all elements from derived
         // if the result is 0, return true
         // else return false
         return (derived.reduce { acc, i -> acc xor i }) == 0
     }
 
-    // faster solution
-    fun fasterDoesValidArrayExist(derived: IntArray): Boolean {
+    // better solution
+    fun betterDoesValidArrayExist(derived: IntArray): Boolean {
         var x = 0
+
+        // add all the numbers in derived and check if the sum is even
         for (i in derived) {
-            x = x xor i
+            x += i
         }
-        return x == 0
+        return x%2 == 0
     }
 }
 
