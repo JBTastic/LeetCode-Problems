@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/minimum-length-of-string-after-operations/description/?envType=daily-question&envId=2025-01-13
+// https://leetcode.com/problems/minimum-length-of-string-after-operations/
 
 class Solution {
     fun minimumLength(s: String): Int {

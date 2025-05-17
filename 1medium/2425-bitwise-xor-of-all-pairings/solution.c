@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/bitwise-xor-of-all-pairings/?envType=daily-question&envId=2025-01-16
+// https://leetcode.com/problems/bitwise-xor-of-all-pairings/
 
 int xorAllNums(int* nums1, int nums1Size, int* nums2, int nums2Size) {
     int x1 = 0;

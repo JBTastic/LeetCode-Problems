@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/description/?envType=daily-question&envId=2025-01-12
+// https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
 
 class Solution {
     fun canBeValid(s: String, locked: String): Boolean {

@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/first-completely-painted-row-or-column/description/?envType=daily-question&envId=2025-01-20
+// https://leetcode.com/problems/first-completely-painted-row-or-column/
 
 class Solution {
     fun firstCompleteIndex(arr: IntArray, mat: Array<IntArray>): Int {

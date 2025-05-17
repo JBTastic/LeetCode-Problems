@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/convert-1d-array-into-2d-array/?envType=daily-question&envId=2025-01-13
+// https://leetcode.com/problems/convert-1d-array-into-2d-array/
 
 class Solution {
     fun construct2DArray(original: IntArray, m: Int, n: Int): Array<IntArray> {

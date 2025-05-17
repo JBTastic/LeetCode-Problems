@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/bitwise-xor-of-all-pairings/?envType=daily-question&envId=2025-01-16
+// https://leetcode.com/problems/bitwise-xor-of-all-pairings/
 
 class Solution {
     fun xorAllNums(nums1: IntArray, nums2: IntArray): Int {

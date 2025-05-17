@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/count-servers-that-communicate/?envType=daily-question&envId=2025-01-23
+// https://leetcode.com/problems/count-servers-that-communicate/
 
 class Solution {
     fun countServers(grid: Array<IntArray>): Int {

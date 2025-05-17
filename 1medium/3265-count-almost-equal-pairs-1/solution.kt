@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/count-almost-equal-pairs-i/description/
+// https://leetcode.com/problems/count-almost-equal-pairs-i/
 
 class Solution {
 

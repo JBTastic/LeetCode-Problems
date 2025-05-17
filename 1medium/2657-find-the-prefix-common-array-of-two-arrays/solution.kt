@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/description/?envType=daily-question&envId=2025-01-14
+// https://leetcode.com/problems/find-the-prefix-common-array-of-two-arrays/
 
 class Solution {
     fun findThePrefixCommonArray(A: IntArray, B: IntArray): IntArray {

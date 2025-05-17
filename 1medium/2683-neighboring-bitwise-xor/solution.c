@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/neighboring-bitwise-xor/description/?envType=daily-question&envId=2025-01-17
+// https://leetcode.com/problems/neighboring-bitwise-xor/
 
 #include <stdbool.h>
 

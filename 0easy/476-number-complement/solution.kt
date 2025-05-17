@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/number-complement/?envType=daily-question&envId=2025-01-18
+// https://leetcode.com/problems/number-complement/
 
 class Solution {
     fun findComplement(num: Int): Int {

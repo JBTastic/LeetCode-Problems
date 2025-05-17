@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/find-eventual-safe-states/description/?envType=daily-question&envId=2025-01-24
+// https://leetcode.com/problems/find-eventual-safe-states/
 
 class Solution {
     fun eventualSafeNodes(graph: Array<IntArray>): List<Int> {
