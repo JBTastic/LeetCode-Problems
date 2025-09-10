@@ -2,6 +2,8 @@
 
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+
+        # Edge cases for overflow
         if dividend <= -2**31 and divisor == -1:
             return 2**31 - 1
         if dividend <= -2**31 and divisor == 1:
@@ -11,17 +13,29 @@ class Solution:
         if dividend >= 2**31 - 1 and divisor == 1:
             return 2**31 - 1
         
+        # Determine the sign of the result
         negative = (dividend < 0) ^ (divisor < 0)
 
-        temp = abs(divisor)
-        result = 0
-        
-        while temp <= abs(dividend):
-            result += 1 # add 1 to final result
-            temp += abs(divisor) # add temp to itself
+        # Work with positive numbers
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+
+        # Initialize variables
+        temp = divisor
+        result = 1
+
+        # 1. step: bitshift left to get close to the number we need
+        while (temp << 1) <= dividend:
+            temp <<= 1 # bitshift left, multiply by 2
+            result <<= 1  # bitshift left, multiply by 2
+
+        # 2. step: add divisor until we reach the number we need
+        while temp + divisor <= dividend:
+            temp += divisor
+            result += 1
 
         if negative:
-            return result * -1
+            return -result
         return result
 
 
