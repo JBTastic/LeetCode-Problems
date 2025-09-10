@@ -21,21 +21,27 @@ class Solution:
         divisor = abs(divisor)
 
         # Initialize variables
-        temp = divisor
-        result = 1
+        result = 0
+        remaining = dividend
 
-        # 1. step: bitshift left to get close to the number we need
-        while (temp << 1) <= dividend:
-            temp <<= 1 # bitshift left, multiply by 2
-            result <<= 1  # bitshift left, multiply by 2
+        # repeat until remainder is smaller than divisor
+        while remaining >= divisor:
+            # start with divisor
+            temp = divisor
+            multiple = 1
 
-        # 2. step: add divisor until we reach the number we need
-        while temp + divisor <= dividend:
-            temp += divisor
-            result += 1
+            # 1. step: bitshift left to get close to the current remainder
+            while (temp << 1) <= remaining:
+                temp <<= 1 # bitshift left, multiply by 2
+                multiple <<= 1  # bitshift left, multiply by 2
 
+            # subtract this chunk
+            remaining -= temp
+            result += multiple
+
+        # if negative, flip sign
         if negative:
-            return -result
+            result = -result
         return result
 
 
