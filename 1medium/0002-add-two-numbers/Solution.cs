@@ -1,6 +1,6 @@
 ﻿// https://leetcode.com/problems/add-two-numbers/
 
-
+#region Solution
 using System.Numerics;
 
 public class Solution
@@ -10,7 +10,7 @@ public class Solution
         BigInteger num = 0;
         int digitIndex = 0; // Indicates at which index we are from right to left
 
-        ListNode cur = node; ; // Current number in linked list
+        ListNode cur = node;
         while (true)
         {
             num += cur.val * BigInteger.Pow(10, digitIndex); // Add the current digit to the number, multiplying it by 10^digitIndex to place it in the correct position
@@ -43,21 +43,24 @@ public class Solution
         ListNode? cur = result;
         while (sum > 0)
         {
-            int leastSignificant = (int)(sum % 10);
+            int leastSignificant = (int)(sum % 10); // Get least significant digit of the sum
             cur.val = leastSignificant;
             sum -= leastSignificant;
-            if (sum == 0) // If the sum is 0, we are done and can break out of the loop
+            if (sum == 0) // If the sum is now 0, we are done and can break out of the loop
             {
                 break;
             }
             sum /= 10;
+            // Now sum is the remaining part of the number after removing the least significant digit
             cur.next = new ListNode();
             cur = cur.next;
         }
         return result;
     }
 }
+#endregion
 
+#region Helper for VSCode
 public class ListNode
 {
     public int val;
@@ -134,3 +137,4 @@ public class Program
         Console.WriteLine($"\nResult: {PrettyPrintLinkedList(result)}\nCorrect: {PrettyPrint(new int[] { 7, 0, 8 })}\n"); // 807
     }
 }
+#endregion
