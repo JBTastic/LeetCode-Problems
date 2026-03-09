@@ -1,27 +1,19 @@
 ﻿// https://leetcode.com/problems/add-two-numbers/
 
-public class ListNode
-{
-    public int val;
-    public ListNode? next; // Had to change it to a nullable type
-    public ListNode(int val = 0, ListNode? next = null) // Had to change it to a nullable type
-    {
-        this.val = val;
-        this.next = next;
-    }
-}
+
+using System.Numerics;
 
 public class Solution
 {
-    private long GetNumFromListNode(ListNode node)
+    private BigInteger GetNumFromListNode(ListNode node)
     {
-        long num = 0;
+        BigInteger num = 0;
         int digitIndex = 0; // Indicates at which index we are from right to left
 
         ListNode cur = node; ; // Current number in linked list
         while (true)
         {
-            num += cur.val * (long)Math.Pow(10, digitIndex); // Add the current digit to the number, multiplying it by 10^digitIndex to place it in the correct position
+            num += cur.val * BigInteger.Pow(10, digitIndex); // Add the current digit to the number, multiplying it by 10^digitIndex to place it in the correct position
             digitIndex += 1;
 
             if (cur.next != null) // If there is a next node, move to it
@@ -37,10 +29,10 @@ public class Solution
     }
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
     {
-        long num1 = GetNumFromListNode(l1);
-        long num2 = GetNumFromListNode(l2);
+        BigInteger num1 = GetNumFromListNode(l1);
+        BigInteger num2 = GetNumFromListNode(l2);
 
-        long sum = num1 + num2;
+        BigInteger sum = num1 + num2;
 
         if (sum == 0) // If the sum is 0, return a linked list with a single node with value 0
         {
@@ -63,6 +55,17 @@ public class Solution
             cur = cur.next;
         }
         return result;
+    }
+}
+
+public class ListNode
+{
+    public int val;
+    public ListNode? next; // Had to change it to a nullable type
+    public ListNode(int val = 0, ListNode? next = null) // Had to change it to a nullable type
+    {
+        this.val = val;
+        this.next = next;
     }
 }
 
@@ -125,9 +128,9 @@ public class Program
     public static void Main()
     {
         var solution = new Solution();
-        var l1 = CreateLinkedList(0, 8, 6, 5, 6, 8, 3, 5, 7); // 753865680
-        var l2 = CreateLinkedList(6, 7, 8, 0, 8, 5, 8, 9, 7); // 798580876
-        var result = solution.AddTwoNumbers(l1, l2); // 1552446556
-        Console.WriteLine($"\nResult: {PrettyPrintLinkedList(result)}\nCorrect: {PrettyPrint(new int[] { 6, 5, 5, 6, 4, 4, 2, 5, 5, 1 })}\n"); // 6556442551
+        var l1 = CreateLinkedList(2, 4, 3) ?? new ListNode(); // 342
+        var l2 = CreateLinkedList(5, 6, 4) ?? new ListNode(); // 465
+        var result = solution.AddTwoNumbers(l1, l2); // 807
+        Console.WriteLine($"\nResult: {PrettyPrintLinkedList(result)}\nCorrect: {PrettyPrint(new int[] { 7, 0, 8 })}\n"); // 807
     }
 }
